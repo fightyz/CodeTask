@@ -1,0 +1,22 @@
+package com.zoeyoung.codetask.injection.component;
+
+import com.zoeyoung.codetask.ui.base.BaseActivity;
+import com.zoeyoung.codetask.injection.ConfigPersistent;
+import com.zoeyoung.codetask.injection.module.ActivityModule;
+
+import dagger.Component;
+
+/**
+ * Created by zoeyoung on 07/04/2017.
+ * A dagger component that will live during the lifecycle of an Activity but it won't
+ * be destroy during configuration changes. Check {@link BaseActivity} to see how this components
+ * survives configuration changes.
+ * Use the {@link ConfigPersistent} scope to annotate dependencies that need to survive
+ * configuration changes (for example Presenters).
+ */
+@ConfigPersistent
+@Component(dependencies = ApplicationComponent.class)
+public interface ConfigPersistentComponent {
+
+    ActivityComponent activityComponent(ActivityModule activityModule);
+}
